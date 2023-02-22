@@ -1,25 +1,30 @@
-import React from 'react';
-import { FaYoutube } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+
+import Search from './Components/Search';
+import Movies from './Components/Movies';
+
+// eslint-disable-next-line no-unused-vars
+const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 
 const App = () => {
+    const [movies, setMovies] = useState([]);
+
+    const searchMovies = async (title) => {
+        const response = await fetch(`${API_URL}&s=${title}`);
+        const result = await response.json();
+        setMovies(result.Search);
+    };
+    useEffect(() => {
+        searchMovies('Jurassic Park');
+    }, []);
+
+    const handleSearch = (value) => {
+        searchMovies(value);
+    };
     return (
         <div>
-            <header>
-                <h1>A template for React Project</h1>
-            </header>
-            <main>
-                <h1>Welcome to React</h1>
-            </main>
-            <footer>
-                <p className="left">
-                    Subscribe to my{' '}
-                    <a href="https://www.youtube.com/c/anisulislamrubel">
-                        <FaYoutube className="footer__icon" />
-                    </a>{' '}
-                    channel
-                </p>
-                <p className="right">Developed with &hearts; by Anisul Islam</p>
-            </footer>
+            <Search onSearch={handleSearch} />
+            <Movies movies={movies} />
         </div>
     );
 };

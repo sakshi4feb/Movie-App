@@ -52,3 +52,41 @@ footer {
 .footer__icon:hover {
     color: orangered;
 }
+
+.movie__card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+}
+
+.search__form {
+    padding: 1rem;
+    text-align: center;
+}
+
+.form__input {
+    width: 30%;
+    padding: 18px;
+}
+
+.btn {
+    margin: 1rem;
+    font-size: 15px;
+    font-family: Arial;
+    width: 140px;
+    height: 50px;
+    border-width: 1px;
+    color: #fff;
+    border-color: #4e6096;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0px 0px 0px 2px #9fb4f2;
+    text-shadow: 0px 1px 0px #283966;
+    background: linear-gradient(rgb(120, 146, 194), #476e9e);
+}
+
+.btn:hover {
+    background: linear-gradient(#476e9e, rgb(120, 146, 194));
+}
