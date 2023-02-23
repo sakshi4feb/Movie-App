@@ -4,11 +4,13 @@ const Movie = (props) => {
     const { Title, Year, Type, Poster } = props.movie;
     console.log(Title);
     return (
-        <div>
+        <div className="movie">
             <img src={Poster} alt="movie" />
-            <p>Title: {Title}</p>
-            <p>Type: {Type}</p>
-            <p>Year: {Year}</p>
+            <section className="info">
+                <p>Title: {Title}</p>
+                <p>Type: {Type}</p>
+                <p>Year: {Year}</p>
+            </section>
         </div>
     );
 };

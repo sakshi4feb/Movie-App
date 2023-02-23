@@ -23,6 +23,7 @@ const App = () => {
     };
     return (
         <div>
+            <h1 className="title">My Movie Time</h1>
             <Search onSearch={handleSearch} />
             <Movies movies={movies} />
         </div>
