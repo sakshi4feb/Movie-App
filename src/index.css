@@ -97,6 +97,11 @@ footer {
     padding: 18px;
 }
 
+.navbar span:hover {
+    border-bottom: 2px solid coral;
+    padding-bottom: 5px;
+}
+
 .btn {
     margin: 1rem;
     font-size: 15px;
@@ -117,4 +122,19 @@ footer {
 
 .btn:hover {
     background: linear-gradient(#476e9e, rgb(120, 146, 194));
+}
+
+.main_footer {
+    background-color: black;
+    color: white;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    padding: 1rem;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

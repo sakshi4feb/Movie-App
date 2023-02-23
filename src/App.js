@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import Search from './Components/Search';
 import Movies from './Components/Movies';
+import Footer from './Components/Footer';
+import Navbar from './Components/Navbar';
 
 // eslint-disable-next-line no-unused-vars
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
@@ -23,9 +25,12 @@ const App = () => {
     };
     return (
         <div>
+            
             <h1 className="title">My Movie Time</h1>
             <Search onSearch={handleSearch} />
             <Movies movies={movies} />
+
+            <Footer />
         </div>
     );
 };

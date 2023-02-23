@@ -17,6 +17,7 @@ const Search = (props) => {
         <div>
             <form onSubmit={handleSubmit} className="search__form">
                 <input type="text" placeholder="enter movie/show" name="movie" value={movie} onChange={handleChange} className="form__input"></input>
+
                 <button type="submit" className="btn">
                     Search
                 </button>
