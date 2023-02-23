@@ -28,7 +28,8 @@ const App = () => {
         //console.log(value);
         const newValue = { imdbID: uuidv4(), ...value };
         //console.log(newValue);
-        setMovies([newValue]);
+        //setMovies([newValue]);
+        setMovies((prevMovies) => [...prevMovies, newValue]);
     };
     return (
         <div>

@@ -5,10 +5,10 @@ const AddNewMovie = (props) => {
         Title: '',
         Type: '',
         Year: '',
-        Poster: ''
+       // Poster: ''
     });
 
-    const { Title, Type, Year, Poster } = newMovie;
+    const { Title, Type, Year} = newMovie;
     const handleChange = (e) => {
         // update the product state with the recent input value
         setNewMovie((prevState) => {
@@ -23,7 +23,7 @@ const AddNewMovie = (props) => {
             Title: '',
             Type: '',
             Year: '',
-            Poster: ''
+          //  Poster: ''
         });
     };
     return (
