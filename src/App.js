@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,6 +11,8 @@ const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 
 const App = () => {
     const [movies, setMovies] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     const searchMovies = async (title) => {
         const response = await fetch(`${API_URL}&s=${title}`);
@@ -25,10 +28,7 @@ const App = () => {
     };
 
     const handleNewMovie = (value) => {
-        //console.log(value);
         const newValue = { imdbID: uuidv4(), ...value };
-        //console.log(newValue);
-        //setMovies([newValue]);
         setMovies((prevMovies) => [...prevMovies, newValue]);
     };
     const handleDelete = (id) => {
