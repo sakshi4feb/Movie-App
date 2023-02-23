@@ -35,15 +35,14 @@ const App = () => {
         //as we have asked not to use DELEET http mehtod . this is being removed from just state
         setMovies(movies?.filter((movie) => movie.imdbID !== id));
     };
+   /* const handleUpdate=(id) => {*/
     return (
         <div>
             <h2>Movies Portal</h2>
             <Search onSearch={handleSearch} />
-
             <Movies movies={movies} handleDelete={handleDelete} />
             <AddNewMovie onNewMovie={handleNewMovie} />
         </div>
     );
 };
-
 export default App;
