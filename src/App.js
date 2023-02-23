@@ -21,11 +21,16 @@ const App = () => {
     const handleSearch = (value) => {
         searchMovies(value);
     };
+
+    const handleDelete = (id) => {
+        //as we have asked not to use DELEET http mehtod . this is being removed from just state
+        setMovies(movies?.filter((movie) => movie.imdbID !== id));
+    };
     return (
         <div>
             <h1 className="title">Book My Show</h1>
             <Search onSearch={handleSearch} />
-            <Movies movies={movies} />
+            <Movies movies={movies} handleDelete={handleDelete} />
         </div>
     );
 };
