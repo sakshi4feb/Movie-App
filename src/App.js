@@ -28,6 +28,7 @@ const App = () => {
     };
     return (
         <div>
+            <h1 className="title">Book My Show</h1>
             <Search onSearch={handleSearch} />
             <Movies movies={movies} handleDelete={handleDelete} />
         </div>

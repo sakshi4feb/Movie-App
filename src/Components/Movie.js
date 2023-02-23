@@ -6,9 +6,9 @@ const Movie = (props) => {
 
     console.log(Title);
     return (
-        <div>
+        <div className="movie">
             <img src={Poster} alt="movie" />
-            <section className="">
+            <section className="data">
                 <p>Title: {Title}</p>
                 <p>Type: {Type}</p>
                 <p>Year: {Year}</p>
