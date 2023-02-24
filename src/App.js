@@ -37,7 +37,8 @@ const App = () => {
     };
     return (
         <div>
-            <h2>Movies Portal</h2>
+            <h2 className="title">Movies Portal</h2>
+
             <Search onSearch={handleSearch} />
 
             <Movies movies={movies} handleDelete={handleDelete} />
