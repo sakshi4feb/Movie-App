@@ -12,11 +12,11 @@ html {
 
 body {
     background-color: #4c4c4c;
-    background-image: url(/image/dino.jpg);
+    /* background-image: url(/image/dino.jpg);
     background-repeat: no-repeat;
     max-width: 100%;
     max-height: 100%;
-    background-size: cover;
+    background-size: cover;*/
 }
 
 header {
@@ -69,7 +69,7 @@ footer {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 3rem;
 }
-.movie {
+/*.movie {
     color: white;
     padding: 0.6rem;
     border-radius: 0.6rem;
@@ -78,14 +78,23 @@ footer {
     height: auto;
     text-align: center;
     transition: all 0.3s;
+}*/
+
+.card_container {
+    width: 300px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px -5px;
+    background-color: rgb(227, 231, 234);
 }
-.movie:hover {
-    transform: scale(1.1);
+.image_container {
+    overflow: hidden;
+    max-height: 300px;
 }
 
-.info {
+.card_info {
     color: brown;
     font-weight: bold;
+    text-align: center;
 }
 .search__form {
     padding: 1rem;
