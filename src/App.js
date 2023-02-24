@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,13 +11,25 @@ const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 
 const App = () => {
     const [movies, setMovies] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     const searchMovies = async (title) => {
-        const response = await fetch(`${API_URL}&s=${title}`);
-        const result = await response.json();
-        setMovies(result.Search);
+        try {
+            const response = await fetch(`${API_URL}&s=${title}`);
+            if (!response.ok) {
+                throw new Error('failed to load data');
+            }
+            const result = await response.json();
+            setMovies(result.Search);
+            setIsLoading(false);
+        } catch (err) {
+            setError(err.message);
+            setIsLoading(false);
+        }
     };
     useEffect(() => {
+        setIsLoading(true);
         searchMovies('Jurassic Park');
     }, []);
 
@@ -25,22 +38,25 @@ const App = () => {
     };
 
     const handleNewMovie = (value) => {
-        //console.log(value);
         const newValue = { imdbID: uuidv4(), ...value };
-        //console.log(newValue);
-        //setMovies([newValue]);
         setMovies((prevMovies) => [...prevMovies, newValue]);
     };
     const handleDelete = (id) => {
         //as we have asked not to use DELEET http mehtod . this is being removed from just state
         setMovies(movies?.filter((movie) => movie.imdbID !== id));
     };
-   /* const handleUpdate=(id) => {*/
+    /* const handleUpdate=(id) => {*/
+
+    let contentElement = '';
+    if (movies.length > 0) {
+        contentElement = <Movies movies={movies} handleDelete={handleDelete} />;
+    }
     return (
         <div>
             <h2>Movies Portal</h2>
+            {isLoading && <p>Loading...</p>}
             <Search onSearch={handleSearch} />
-            <Movies movies={movies} handleDelete={handleDelete} />
+            {error ? <p>{error}</p> : contentElement}
             <AddNewMovie onNewMovie={handleNewMovie} />
         </div>
     );
