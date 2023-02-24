@@ -11,13 +11,13 @@ html {
 }
 
 body {
-    background-image: url(/image/dino2.jpg);
+    /* background-image: url(/image/dino2.jpg);
     background-repeat: no-repeat;
     max-height: 100%;
     width: 100%;
-    background-size: cover;
+    background-size: cover;*/
 
-    /* background-color: #4c4c4c;*/
+    background-color: #4c4c4c;
 }
 
 header {
@@ -27,17 +27,16 @@ header {
     align-items: center;
     background-color: #1c1c1c;
     color: white;
+    font-size: 50px;
 }
 main {
     min-height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.title {
-    color: #fff;
-    text-align: center;
-    font-size: 300%;
+    max-width: 400px;
+    max-height: 1200px;
+    margin: auto;
 }
 
 footer {
@@ -66,7 +65,7 @@ footer {
 
 .movie__card {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 3rem;
     width: 725;
     height: 725;
@@ -82,8 +81,31 @@ footer {
     text-align: center;
     transition: all 0.3s;
 }
-.movie:hover {
-    transform: scale(1.1);
+.card-container {
+    width: 70%;
+
+    border: 1px solid black;
+    /*padding: 10px;
+    max-width: 100%;
+     overflow: hidden;
+    box-shadow: 0px 0px 15px -5px;*/
+    background-color: #7e7b7b;
+    margin: 4rem;
+}
+.image-container {
+    /*overflow: hidden;
+    height: auto;
+    width: 100%;*/
+    max-width: 300px;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    align-items: center;
+    padding: 0.5;
+}
+.card-info {
+    text-align: center;
+    font-size: large;
 }
 
 .search__form {
@@ -117,10 +139,10 @@ footer {
 img {
     max-width: 100%;
     height: 30rem;
-    margin:20px;
+    margin: 20px;
 }
-p{
+p {
     margin-left: 20px;
     text-align: left;
-    color:rgb(243, 244, 244);
+    color: rgb(243, 244, 244);
 }
