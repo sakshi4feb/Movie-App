@@ -21,7 +21,8 @@ const App = () => {
     }, []);
 
     const handleSearch = (value) => {
-        searchMovies(value);
+        // searchMovies(value);
+        setMovies(movies.filter((movie) => movie.Title.match(value)));
     };
 
     const handleNewMovie = (value) => {
@@ -35,7 +36,7 @@ const App = () => {
         //as we have asked not to use DELEET http mehtod . this is being removed from just state
         setMovies(movies?.filter((movie) => movie.imdbID !== id));
     };
-   /* const handleUpdate=(id) => {*/
+    /* const handleUpdate=(id) => {*/
     return (
         <div>
             <h2>Movies Portal</h2>
