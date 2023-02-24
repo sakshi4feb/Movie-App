@@ -15,11 +15,21 @@ const App = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const searchMovies = async (title) => {
-        const response = await fetch(`${API_URL}&s=${title}`);
-        const result = await response.json();
-        setMovies(result.Search);
+        try {
+            const response = await fetch(`${API_URL}&s=${title}`);
+            if (!response.ok) {
+                throw new Error('failed to load data');
+            }
+            const result = await response.json();
+            setMovies(result.Search);
+            setIsLoading(false);
+        } catch (err) {
+            setError(err.message);
+            setIsLoading(false);
+        }
     };
     useEffect(() => {
+        setIsLoading(true);
         searchMovies('Jurassic Park');
     }, []);
 
@@ -35,12 +45,18 @@ const App = () => {
         //as we have asked not to use DELEET http mehtod . this is being removed from just state
         setMovies(movies?.filter((movie) => movie.imdbID !== id));
     };
-   /* const handleUpdate=(id) => {*/
+    /* const handleUpdate=(id) => {*/
+
+    let contentElement = '';
+    if (movies.length > 0) {
+        contentElement = <Movies movies={movies} handleDelete={handleDelete} />;
+    }
     return (
         <div>
             <h2>Movies Portal</h2>
+            {isLoading && <p>Loading...</p>}
             <Search onSearch={handleSearch} />
-            <Movies movies={movies} handleDelete={handleDelete} />
+            {error ? <p>{error}</p> : contentElement}
             <AddNewMovie onNewMovie={handleNewMovie} />
         </div>
     );
