@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button';
 
 const Movie = (props) => {
     const { Title, Year, Type, Poster, imdbID } = props.movie;
@@ -12,12 +13,12 @@ const Movie = (props) => {
                 <p>Title: {Title}</p>
                 <p>Type: {Type}</p>
                 <p>Year: {Year}</p>
-                <button
+                <Button
                     onClick={() => {
                         handleDelete(imdbID);
                     }}>
                     Delete
-                </button>
+                </Button>
             </section>
         </div>
     );
