@@ -1,10 +1,18 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/no-distracting-elements */
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import Search from './Components/Search';
 import Movies from './Components/Movies';
 import AddNewMovie from './Components/AddNewMovie';
-
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import Home from './Components/Pages/Home';
+import About from './Components/Pages/About';
+import Contact from './Components/Pages/Contact';
+import Error from './Components/Pages/Error';
+import Navbar from './Components/Pages/Navbar';
 // eslint-disable-next-line no-unused-vars
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 
@@ -38,10 +46,24 @@ const App = () => {
     /* const handleUpdate=(id) => {*/
     return (
         <div>
-            <header>Movies Portal</header>
-            <Search onSearch={handleSearch} />
-            <Movies movies={movies} handleDelete={handleDelete} />
-            <AddNewMovie onNewMovie={handleNewMovie} />
+            <BrowserRouter>
+                <header>
+                    <Navbar />
+                </header>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="*" element={<Error />} />
+                </Routes>
+                <main>
+                    <Search onSearch={handleSearch} />
+                    <Movies movies={movies} handleDelete={handleDelete} />
+                    <AddNewMovie onNewMovie={handleNewMovie} />
+                </main>
+
+                <footer>Footer</footer>
+            </BrowserRouter>
         </div>
     );
 };
