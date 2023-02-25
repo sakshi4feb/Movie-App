@@ -3,9 +3,8 @@ import Button from './Button';
 
 const Movie = (props) => {
     const { Title, Year, Type, Poster, imdbID } = props.movie;
-    const { handleDelete } = props;
+    const { handleDelete, handleEdit } = props;
 
-    console.log(Title);
     return (
         <div className="movie">
             {Poster ? <img src={Poster} alt="movie" /> : <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_iwpPSZsnDqf52czYxFbuRgg_GbqgxUsG2g&usqp=CAU" alt="movie" />}
@@ -18,6 +17,13 @@ const Movie = (props) => {
                         handleDelete(imdbID);
                     }}>
                     Delete
+                </Button>
+
+                <Button
+                    onClick={() => {
+                        handleEdit(imdbID);
+                    }}>
+                    Edit Movie
                 </Button>
             </section>
         </div>
