@@ -8,11 +8,11 @@ import Search from './Components/Search';
 import Movies from './Components/Movies';
 import AddNewMovie from './Components/AddNewMovie';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import Home from './Components/Pages/Home';
-import About from './Components/Pages/About';
-import Contact from './Components/Pages/Contact';
-import Error from './Components/Pages/Error';
-import Navbar from './Components/Pages/Navbar';
+import Home from './Pages/Home';
+import About from './Pages/About';
+import Contact from './Pages/Contact';
+import Error from './Pages/Error';
+import Navbar from './Pages/Navbar';
 // eslint-disable-next-line no-unused-vars
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 
@@ -56,6 +56,7 @@ const App = () => {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="*" element={<Error />} />
                 </Routes>
+
                 <main>
                     <Search onSearch={handleSearch} />
                     <Movies movies={movies} handleDelete={handleDelete} />

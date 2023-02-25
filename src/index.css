@@ -135,7 +135,7 @@ img {
 }*/
 
 .search__form {
-    padding: 1rem;
+    padding: 2rem;
     text-align: center;
     margin-top: 2rem;
 }
@@ -200,7 +200,7 @@ p {
         grid-template-columns: 1fr 1fr;
         width: 100%;
         min-height: 50%;
-        background-color: #9fb4f2;
+        background-color: #646467;
     }
     .movie {
         display: grid;
