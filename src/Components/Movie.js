@@ -7,31 +7,21 @@ const Movie = (props) => {
 
     console.log(Title);
     return (
-<<<<<<< HEAD
-        <div className="card_container">
-            <div className="image_conntainer">
+        <div className="card-container">
+            <div className="image-conntainer">
                 <img src={Poster} alt="movie" />
-                <section className="card_info">
+                <section className="card-info">
                     <p>Title: {Title}</p>
                     <p>Type: {Type}</p>
                     <p>Year: {Year}</p>
                 </section>
-            </div>
-=======
-        <div className="movie">
-            {Poster ? <img src={Poster} alt="movie" /> : <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_iwpPSZsnDqf52czYxFbuRgg_GbqgxUsG2g&usqp=CAU" alt="movie" />}
-            <section className="data">
-                <p>Title: {Title}</p>
-                <p>Type: {Type}</p>
-                <p>Year: {Year}</p>
                 <Button
                     onClick={() => {
                         handleDelete(imdbID);
                     }}>
                     Delete
                 </Button>
-            </section>
->>>>>>> main
+            </div>
         </div>
     );
 };
