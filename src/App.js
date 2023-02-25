@@ -8,7 +8,6 @@ import AddNewMovie from './Components/AddNewMovie';
 
 // eslint-disable-next-line no-unused-vars
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
-
 const App = () => {
     const [movies, setMovies] = useState([]);
     const [movieSearch, setMovieSearch] = useState([]);
@@ -22,9 +21,7 @@ const App = () => {
                 throw new Error('failed to load data');
             }
             const result = await response.json();
-            console.log(result.Search);
             setMovieSearch(result.Search);
-
             setIsLoading(false);
         } catch (err) {
             setError(err.message);
@@ -40,39 +37,23 @@ const App = () => {
     localStorage.setItem('MY_KEY', JSON.stringify(movieSearch));
 
     const handleSearch = (value) => {
-        //searchMovies(value);
         const data = localStorage.getItem('MY_KEY');
-        console.log(JSON.parse(data));
         const newData = JSON.parse(data);
-        //setMovies(JSON.parse(data));
-        console.log(newData);
         const result = newData.filter((movie) => movie.Title.includes(value));
-        console.log(result);
         if (result.length === 0) searchMovies(value);
-
-        //setMovies(movies.filter((movie) => movie.Title.match(value)));
     };
-
     const handleNewMovie = (value) => {
         const newValue = { imdbID: uuidv4(), ...value };
         setMovieSearch((prevMovies) => [...prevMovies, newValue]);
     };
     const handleDelete = (id) => {
-        //as we have asked not to use DELEET http mehtod . this is being removed from just state
-        //setMovies(movies?.filter((movie) => movie.imdbID !== id));
-
         const data = localStorage.getItem('MY_KEY');
         setMovieSearch(JSON.parse(data));
-        console.log(movieSearch);
         const newData = movieSearch.filter((movie) => movie.imdbID !== id);
-        //setMovieSearch(movieSearch?.filter((movie) => movie.imdbID !== id));
         localStorage.setItem('MY_KEY', JSON.stringify(newData));
         setMovieSearch(newData);
     };
-    console.log(movieSearch);
-
     const handleEdit = (id) => {};
-
     let contentElement = '';
     if (movieSearch.length > 0) {
         contentElement = <Movies movieSearch={movieSearch} handleDelete={handleDelete} handleEdit={handleEdit} />;
