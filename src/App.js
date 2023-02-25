@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Search from './Components/Search';
 import Movies from './Components/Movies';
 import AddNewMovie from './Components/AddNewMovie';
+import UpdateMovie from './Components/UpdateMovie';
 
 // eslint-disable-next-line no-unused-vars
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
@@ -13,6 +14,8 @@ const App = () => {
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [movie, setMovie] = useState({});
+    const [isUpdate, setIsUpdate] = useState(false);
 
     const searchMovies = async (title) => {
         try {
@@ -46,9 +49,15 @@ const App = () => {
         setMovies(movies?.filter((movie) => movie.imdbID !== id));
     };
 
+    const handleUpdate = (movie) => {
+        console.log(movie);
+        setIsUpdate(true);
+        setMovie(movie);
+    };
+
     let contentElement = '';
     if (movies.length > 0) {
-        contentElement = <Movies movies={movies} handleDelete={handleDelete} />;
+        contentElement = <Movies movies={movies} handleDelete={handleDelete} handleUpdate={handleUpdate} />;
     }
     return (
         <div>
@@ -56,7 +65,7 @@ const App = () => {
             {isLoading && <p>Loading...</p>}
             <Search onSearch={handleSearch} />
             {error ? <p>{error}</p> : contentElement}
-            <AddNewMovie onNewMovie={handleNewMovie} />
+            {isUpdate ? <UpdateMovie movie={movie} handleUpdate={handleUpdate} /> : <AddNewMovie onNewMovie={handleNewMovie} />}
         </div>
     );
 };
