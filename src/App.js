@@ -6,8 +6,7 @@ import Search from './Components/Search';
 import Movies from './Components/Movies';
 import AddNewMovie from './Components/AddNewMovie';
 import UpdateMovie from './Components/UpdateMovie';
-
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 /*import Home from './Pages/Home';
 import About from './Pages/About';
 import Contact from './Pages/Contact';
@@ -20,7 +19,6 @@ const App = () => {
     const [movies, setMovies] = useState([]);
     const [movieSearch, setMovieSearch] = useState([]);
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
     const [movie, setMovie] = useState({});
     const [isUpdate, setIsUpdate] = useState(false);
 
@@ -32,14 +30,11 @@ const App = () => {
             }
             const result = await response.json();
             setMovieSearch(result.Search);
-            setIsLoading(false);
         } catch (err) {
             setError(err.message);
-            setIsLoading(false);
         }
     };
     useEffect(() => {
-        setIsLoading(true);
         searchMovies('Jurassic Park');
     }, []);
 
@@ -90,19 +85,17 @@ const App = () => {
                 <header>
                     <Navbar />
                 </header>
-                {/*<Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/contact" element={<Contact />} />
-                     <Route path="*" element={<Error />} />
-                     </Routes>*/}
+                <Routes>
+                    {/* <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />*/}
+                    <Route path="/addnewmovie" element={<AddNewMovie />} />
+                    {/*<Route path="*" element={<Error />} />*/}
+                </Routes>
                 <main>
-                    {isLoading && <p>Loading...</p>}
                     <Search onSearch={handleSearch} />
                     {error ? <p>{error}</p> : contentElement}
                     {isUpdate ? <UpdateMovie movie={movie} setIsUpdate={setIsUpdate} updateMovie={updateMovie} /> : <AddNewMovie onNewMovie={handleNewMovie} />}
                 </main>
-
                 <footer>Footer</footer>
             </BrowserRouter>
         </div>

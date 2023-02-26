@@ -21,6 +21,7 @@ body {
 }
 .container{
     max-width: 1200px;
+    max-height:1800px;
     margin: 0 auto;
 }
 
@@ -74,7 +75,7 @@ header {
 }
 /*main {
     min-height: 85vh;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
 }*/
