@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import Search from './Components/Search';
@@ -15,7 +15,6 @@ import Contact from './Pages/Contact';
 import Error from './Pages/Error';
 import Navbar from './Pages/Navbar';
 import { async } from 'q';
-
 
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 const App = () => {
@@ -66,6 +65,7 @@ const App = () => {
         const newData = movieSearch.filter((movie) => movie.imdbID !== id);
         localStorage.setItem('MY_KEY', JSON.stringify(newData));
         setMovieSearch(newData);
+        alert('movie is deleted!');
     };
 
     const handleUpdate = (movie) => {
