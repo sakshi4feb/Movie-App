@@ -21,6 +21,7 @@ function UpdateMovie(props) {
             Year: ''
         });
         setIsUpdate(false);
+        alert('successfully updated');
     };
     const handleFormFiled = (e) => {
         setMovie({ ...movie, [e.target.name]: e.target.value });
