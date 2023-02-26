@@ -10,9 +10,10 @@ import AddNewMovie from './Components/AddNewMovie';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import Home from './Pages/Home';
 import About from './Pages/About';
-import Contact from './Pages/Contact';
+import Contact from './Pages/Add';
 import Error from './Pages/Error';
 import Navbar from './Pages/Navbar';
+import Add from './Pages/Add';
 // eslint-disable-next-line no-unused-vars
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 
@@ -53,7 +54,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
-                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/add" element={<Add />} />
                     <Route path="*" element={<Error />} />
                 </Routes>
 

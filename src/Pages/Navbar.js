@@ -16,10 +16,14 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/about">About</NavLink>
+                        <NavLink
+                            to="https://www.disneylandparis.com/en-int/?ecid=SEM_ild23_A_56d861e3-4fad-4610-98ad-8c169f281405&country=se&customid=166185932_1Cj0KCQiAo-yfBhD_ARIsANr56g5_i6Y0gca1ci1jnndgqIiaDsmwVQNNJHcPkO_qALLss0lAmaxaFbMaAlPgEALw_wcB"
+                            target={'_blank'}>
+                            About
+                        </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/contact">Contact</NavLink>
+                        <NavLink to={'add-movie'}>Add</NavLink>
                     </li>
                 </ul>
             </nav>
