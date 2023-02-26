@@ -1,18 +1,19 @@
 /* eslint-disable max-lines */
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import Search from './Components/Search';
 import Movies from './Components/Movies';
 import AddNewMovie from './Components/AddNewMovie';
 import UpdateMovie from './Components/UpdateMovie';
+import Footer from './Components/Footer';
 
-import { BrowserRouter } from 'react-router-dom';
-/*import Home from './Pages/Home';
+import Home from './Pages/Home';
 import About from './Pages/About';
 import Contact from './Pages/Contact';
-import Error from './Pages/Error';*/
-import Navbar from './pages/Navbar';
+import Error from './Pages/Error';
+import Navbar from './Pages/Navbar';
 
 // eslint-disable-next-line no-unused-vars
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
@@ -90,20 +91,20 @@ const App = () => {
                 <header>
                     <Navbar />
                 </header>
-                {/*<Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/contact" element={<Contact />} />
-                     <Route path="*" element={<Error />} />
-                     </Routes>*/}
-                <main>
+
+                <main className="main">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/About" element={<About />} />
+                        <Route path="/Contact" element={<Contact />} />
+                        <Route path="*" element={<Error />} />
+                    </Routes>
                     {isLoading && <p>Loading...</p>}
                     <Search onSearch={handleSearch} />
                     {error ? <p>{error}</p> : contentElement}
                     {isUpdate ? <UpdateMovie movie={movie} setIsUpdate={setIsUpdate} updateMovie={updateMovie} /> : <AddNewMovie onNewMovie={handleNewMovie} />}
                 </main>
-
-                <footer>Footer</footer>
+                <Footer />
             </BrowserRouter>
         </div>
     );

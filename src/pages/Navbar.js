@@ -4,9 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
     return (
         <div className="nav-bar">
-            <h1>
-              Movies Portal
-            </h1>
+            <h1>Movies Portal</h1>
             <nav>
                 <ul className="nav-lists">
                     <li className="nav-list">
@@ -15,10 +13,14 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li className="nav-list">
-                        <NavLink to="/about" className="nav-link">About</NavLink>
+                        <NavLink to="/About" className="nav-link">
+                            About
+                        </NavLink>
                     </li>
                     <li className="nav-list">
-                        <NavLink to="/contact" className="nav-link">Contact</NavLink>
+                        <NavLink to="/Contact" className="nav-link">
+                            Contact
+                        </NavLink>
                     </li>
                 </ul>
             </nav>
