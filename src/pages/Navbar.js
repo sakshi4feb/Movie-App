@@ -22,6 +22,11 @@ const Navbar = () => {
                             Contact
                         </NavLink>
                     </li>
+                    <li>
+                        <a href="#form" alt="discover more">
+                            Add New Movie
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>

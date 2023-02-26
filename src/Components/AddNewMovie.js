@@ -26,28 +26,30 @@ const AddNewMovie = (props) => {
         });
     };
     return (
-        <div>
-            <form onSubmit={handleSubmit} className="search__form">
-                <label htmlFor="Title">Movie/Show Name:</label>
-                <input type="text" placeholder="enter movie/show title" name="Title" value={Title} onChange={handleChange} required className="form__input"></input>
-                <br></br>
-                {/* <input type="text" placeholder="enter movie/show type" name="Type" value={Type} onChange={handleChange} required className="form__input"></input> */}
-                <label htmlFor="movieType">Movie Type:</label>
-                <select name="Type" value={Type} onChange={handleChange} required className="form__input" id="movieType">
-                    <option value="">--Please choose an option--</option>
-                    <option>Horrow</option>
-                    <option>Thriller</option>
-                    <option>Comedy</option>
-                    <option>Documentry</option>
-                </select>
-                <br></br>
-                <label htmlFor="Year">Release Year:</label>
-                <input type="text" placeholder="enter movie/show date of release" name="Year" value={Year} onChange={handleChange} required className="form__input"></input>
-                <br></br>
-                <Button type="submit" className="btn">
-                    Add New Movie
-                </Button>
-            </form>
+        <div className="form" id="form">
+            <div className="child__form">
+                <form onSubmit={handleSubmit} className="search__form">
+                    <label htmlFor="Title">Movie/Show Name:</label>
+                    <input type="text" placeholder="enter movie/show title" name="Title" value={Title} onChange={handleChange} required className="form__input"></input>
+                    <br></br>
+                    {/* <input type="text" placeholder="enter movie/show type" name="Type" value={Type} onChange={handleChange} required className="form__input"></input> */}
+                    <label htmlFor="movieType">Movie Type:</label>
+                    <select name="Type" value={Type} onChange={handleChange} required className="form__sel" id="movieType">
+                        <option value="">--Please choose an option--</option>
+                        <option>Horrow</option>
+                        <option>Thriller</option>
+                        <option>Comedy</option>
+                        <option>Documentry</option>
+                    </select>
+                    <br></br>
+                    <label htmlFor="Year">Release Year:</label>
+                    <input type="text" placeholder="enter movie/show date of release" name="Year" value={Year} onChange={handleChange} required className="form__input"></input>
+                    <br></br>
+                    <Button type="submit" className="btn">
+                        Add New Movie
+                    </Button>
+                </form>
+            </div>
         </div>
     );
 };
