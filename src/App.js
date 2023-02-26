@@ -16,9 +16,9 @@ import Navbar from './pages/Navbar';
 
 // eslint-disable-next-line no-unused-vars
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
-
 const App = () => {
     const [movies, setMovies] = useState([]);
+    const [movieSearch, setMovieSearch] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [movie, setMovie] = useState({});
@@ -31,7 +31,7 @@ const App = () => {
                 throw new Error('failed to load data');
             }
             const result = await response.json();
-            setMovies(result.Search);
+            setMovieSearch(result.Search);
             setIsLoading(false);
         } catch (err) {
             setError(err.message);
@@ -43,17 +43,25 @@ const App = () => {
         searchMovies('Jurassic Park');
     }, []);
 
-    const handleSearch = (value) => {
-        setMovies(movies.filter((movie) => movie.Title.match(value)));
-    };
+    console.log(movieSearch);
+    localStorage.setItem('MY_KEY', JSON.stringify(movieSearch));
 
+    const handleSearch = (value) => {
+        const data = localStorage.getItem('MY_KEY');
+        const newData = JSON.parse(data);
+        const result = newData.filter((movie) => movie.Title.includes(value));
+        if (result.length === 0) searchMovies(value);
+    };
     const handleNewMovie = (value) => {
         const newValue = { imdbID: uuidv4(), ...value };
-        setMovies((prevMovies) => [...prevMovies, newValue]);
+        setMovieSearch((prevMovies) => [...prevMovies, newValue]);
     };
     const handleDelete = (id) => {
-        //as we have asked not to use DELEET http mehtod . this is being removed from just state
-        setMovies(movies?.filter((movie) => movie.imdbID !== id));
+        const data = localStorage.getItem('MY_KEY');
+        setMovieSearch(JSON.parse(data));
+        const newData = movieSearch.filter((movie) => movie.imdbID !== id);
+        localStorage.setItem('MY_KEY', JSON.stringify(newData));
+        setMovieSearch(newData);
     };
 
     const handleUpdate = (movie) => {
@@ -74,7 +82,7 @@ const App = () => {
 
     let contentElement = '';
     if (movies.length > 0) {
-        contentElement = <Movies movies={movies} handleDelete={handleDelete} handleUpdate={handleUpdate} />;
+        contentElement = <Movies movieSearch={movieSearch} movies={movies} handleDelete={handleDelete} handleUpdate={handleUpdate} />;
     }
     return (
         <div className="container">
