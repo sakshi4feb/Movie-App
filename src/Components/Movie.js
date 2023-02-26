@@ -20,13 +20,15 @@ const Movie = (props) => {
                 }}>
                 Delete
             </Button>
-            <Button
-                className="button"
-                onClick={() => {
-                    handleUpdate(props.movie);
-                }}>
-                Update
-            </Button>
+            <a href="#form" alt="discover more">
+                <Button
+                    className="button"
+                    onClick={() => {
+                        handleUpdate(props.movie);
+                    }}>
+                    Update
+                </Button>
+            </a>
             {/*</section>*/}
         </div>
     );
