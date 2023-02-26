@@ -42,9 +42,7 @@ function UpdateMovie(props) {
                 <label htmlFor="Year">Release Year:</label>
                 <input type="text" placeholder="enter movie/show date of release" name="Year" value={movie.Year} onChange={handleFormFiled} required className="form__input"></input>
                 <br></br>
-                <Button type="submit" className="btn">
-                    Update Movie
-                </Button>
+                <Button type="submit">Update Movie</Button>
             </form>
         </div>
     );
