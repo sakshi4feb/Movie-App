@@ -3,29 +3,33 @@ import Button from './Button';
 
 const Movie = (props) => {
     const { Title, Year, Type, Poster, imdbID } = props.movie;
-    const { handleDelete, handleEdit } = props;
+    const { handleDelete, handleUpdate } = props;
 
     return (
-        <div className="movie">
+        <div className="product card">
             {Poster ? <img src={Poster} alt="movie" /> : <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_iwpPSZsnDqf52czYxFbuRgg_GbqgxUsG2g&usqp=CAU" alt="movie" />}
-            <section className="data">
-                <p>Title: {Title}</p>
-                <p>Type: {Type}</p>
-                <p>Year: {Year}</p>
+            {/* <section className="data">*/}
+            <p>Title: {Title}</p>
+            <p>Type: {Type}</p>
+            <p>Year: {Year}</p>
+            <br></br>
+            <Button
+                className="button"
+                onClick={() => {
+                    handleDelete(imdbID);
+                }}>
+                Delete
+            </Button>
+            <a href="#form" alt="discover more">
                 <Button
+                    className="button"
                     onClick={() => {
-                        handleDelete(imdbID);
+                        handleUpdate(props.movie);
                     }}>
-                    Delete
+                    Update
                 </Button>
-
-                <Button
-                    onClick={() => {
-                        handleEdit(imdbID);
-                    }}>
-                    Edit Movie
-                </Button>
-            </section>
+            </a>
+            {/*</section>*/}
         </div>
     );
 };
