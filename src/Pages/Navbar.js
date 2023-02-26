@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-distracting-elements */
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink, useNavigate } from 'react-router-dom';
+import AddNewMovie from '../Components/AddNewMovie';
 
 const Navbar = () => {
     return (
@@ -11,9 +12,7 @@ const Navbar = () => {
             <nav>
                 <ul className="nav-lists">
                     <li className="nav-list">
-                        <NavLink to="/" className="nav-link">
-                            Home
-                        </NavLink>
+                        <NavLink to="/">Home</NavLink>
                     </li>
                     <li>
                         <NavLink
@@ -23,7 +22,7 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to={'add-movie'}>Add</NavLink>
+                        <NavLink to="/Addnewmovie">AddNewMovie</NavLink>
                     </li>
                 </ul>
             </nav>

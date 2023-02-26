@@ -1,7 +1,8 @@
 import React from 'react';
+import AddNewMovie from '../Components/AddNewMovie';
 
 const Addmovie = () => {
-    return <h3>Addmovie</h3>;
+    return <AddNewMovie />;
 };
 
 export default Addmovie;
