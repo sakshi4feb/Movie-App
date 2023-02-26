@@ -1,16 +1,9 @@
-import React, { useState } from 'react';
 import Button from './Button';
 
 function UpdateMovie(props) {
-    const { imdbID, Title, Type, Year, Poster } = props.movie;
-    const { setIsUpdate, updateMovie } = props;
-    const [movie, setMovie] = useState({
-        imdbID: imdbID,
-        Title: Title,
-        Type: Type,
-        Year: Year,
-        Poster: Poster
-    });
+    //const { imdbID, Title, Type, Year, Poster } = props.movie;
+    const { movie, setMovie, setIsUpdate, updateMovie } = props;
+
     const submitUpdate = (e) => {
         e.preventDefault();
         //update it

@@ -14,7 +14,6 @@ import About from './Pages/About';
 import Contact from './Pages/Contact';
 import Error from './Pages/Error';
 import Navbar from './Pages/Navbar';
-import { async } from 'q';
 
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 const App = () => {
@@ -41,14 +40,12 @@ const App = () => {
         searchMovies('Jurassic Park');
     }, []);
 
-    console.log(movieSearch);
     localStorage.setItem('MY_KEY', movieSearch ? JSON.stringify(movieSearch) : '');
 
     const handleSearch = (value) => {
         const data = localStorage.getItem('MY_KEY');
         const newData = data ? JSON.parse(data) : [];
         const result = newData.filter((movie) => movie.Title.includes(value));
-        console.log(result);
         if (result.length > 0) {
             setMovieSearch(result);
         } else {
@@ -105,7 +102,7 @@ const App = () => {
                     </Routes>
                     <Search onSearch={handleSearch} />
                     {error ? <p>{error}</p> : contentElement}
-                    {isUpdate ? <UpdateMovie movie={movie} setIsUpdate={setIsUpdate} updateMovie={updateMovie} /> : <AddNewMovie onNewMovie={handleNewMovie} />}
+                    {isUpdate ? <UpdateMovie movie={movie} setMovie={setMovie} setIsUpdate={setIsUpdate} updateMovie={updateMovie} /> : <AddNewMovie onNewMovie={handleNewMovie} />}
                 </main>
                 <Footer />
             </BrowserRouter>
