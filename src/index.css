@@ -74,7 +74,7 @@ header {
 }
 /*main {
     min-height: 85vh;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
 }*/

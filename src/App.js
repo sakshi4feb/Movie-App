@@ -14,14 +14,14 @@ import About from './Pages/About';
 import Contact from './Pages/Contact';
 import Error from './Pages/Error';
 import Navbar from './Pages/Navbar';
+import { async } from 'q';
 
-// eslint-disable-next-line no-unused-vars
+
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 const App = () => {
     const [movies, setMovies] = useState([]);
     const [movieSearch, setMovieSearch] = useState([]);
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
     const [movie, setMovie] = useState({});
     const [isUpdate, setIsUpdate] = useState(false);
 
@@ -33,25 +33,28 @@ const App = () => {
             }
             const result = await response.json();
             setMovieSearch(result.Search);
-            setIsLoading(false);
         } catch (err) {
             setError(err.message);
-            setIsLoading(false);
         }
     };
+
     useEffect(() => {
-        setIsLoading(true);
         searchMovies('Jurassic Park');
     }, []);
 
     console.log(movieSearch);
-    localStorage.setItem('MY_KEY', JSON.stringify(movieSearch));
+    localStorage.setItem('MY_KEY', movieSearch ? JSON.stringify(movieSearch) : '');
 
     const handleSearch = (value) => {
         const data = localStorage.getItem('MY_KEY');
-        const newData = JSON.parse(data);
+        const newData = data ? JSON.parse(data) : [];
         const result = newData.filter((movie) => movie.Title.includes(value));
-        if (result.length === 0) searchMovies(value);
+        console.log(result);
+        if (result.length > 0) {
+            setMovieSearch(result);
+        } else {
+            searchMovies(value);
+        }
     };
     const handleNewMovie = (value) => {
         const newValue = { imdbID: uuidv4(), ...value };
@@ -85,6 +88,7 @@ const App = () => {
     if (movieSearch?.length > 0) {
         contentElement = <Movies movieSearch={movieSearch} movies={movies} handleDelete={handleDelete} handleUpdate={handleUpdate} />;
     }
+
     return (
         <div className="container">
             <BrowserRouter>
@@ -99,7 +103,6 @@ const App = () => {
                         <Route path="/Contact" element={<Contact />} />
                         <Route path="*" element={<Error />} />
                     </Routes>
-                    {isLoading && <p>Loading...</p>}
                     <Search onSearch={handleSearch} />
                     {error ? <p>{error}</p> : contentElement}
                     {isUpdate ? <UpdateMovie movie={movie} setIsUpdate={setIsUpdate} updateMovie={updateMovie} /> : <AddNewMovie onNewMovie={handleNewMovie} />}
