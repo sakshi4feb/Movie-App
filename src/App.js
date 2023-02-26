@@ -69,7 +69,7 @@ const App = () => {
         setMovie(movie);
     };
     const updateMovie = (changedMovie) => {
-        const updatedMovies = movies.map((m) => {
+        const updatedMovies = movieSearch.map((m) => {
             if (changedMovie.imdbID === m.imdbID) {
                 m['Title'] = changedMovie.Title;
                 m['Type'] = changedMovie.Type;
@@ -81,7 +81,7 @@ const App = () => {
     };
 
     let contentElement = '';
-    if (movies.length > 0) {
+    if (movieSearch?.length > 0) {
         contentElement = <Movies movieSearch={movieSearch} movies={movies} handleDelete={handleDelete} handleUpdate={handleUpdate} />;
     }
     return (
