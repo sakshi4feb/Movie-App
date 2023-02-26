@@ -1,19 +1,22 @@
 /* eslint-disable max-lines */
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import Search from './Components/Search';
 import Movies from './Components/Movies';
 import AddNewMovie from './Components/AddNewMovie';
 import UpdateMovie from './Components/UpdateMovie';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-/*import Home from './Pages/Home';
+import Footer from './Components/Footer';
+
+import Home from './Pages/Home';
 import About from './Pages/About';
 import Contact from './Pages/Contact';
-import Error from './Pages/Error';*/
-import Navbar from './pages/Navbar';
+import Error from './Pages/Error';
+import Navbar from './Pages/Navbar';
+import { async } from 'q';
 
-// eslint-disable-next-line no-unused-vars
+
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 const App = () => {
     const [movies, setMovies] = useState([]);
@@ -34,18 +37,24 @@ const App = () => {
             setError(err.message);
         }
     };
+
     useEffect(() => {
         searchMovies('Jurassic Park');
     }, []);
 
     console.log(movieSearch);
-    localStorage.setItem('MY_KEY', JSON.stringify(movieSearch));
+    localStorage.setItem('MY_KEY', movieSearch ? JSON.stringify(movieSearch) : '');
 
     const handleSearch = (value) => {
         const data = localStorage.getItem('MY_KEY');
-        const newData = JSON.parse(data);
+        const newData = data ? JSON.parse(data) : [];
         const result = newData.filter((movie) => movie.Title.includes(value));
-        if (result.length === 0) searchMovies(value);
+        console.log(result);
+        if (result.length > 0) {
+            setMovieSearch(result);
+        } else {
+            searchMovies(value);
+        }
     };
     const handleNewMovie = (value) => {
         const newValue = { imdbID: uuidv4(), ...value };
@@ -79,24 +88,26 @@ const App = () => {
     if (movieSearch?.length > 0) {
         contentElement = <Movies movieSearch={movieSearch} movies={movies} handleDelete={handleDelete} handleUpdate={handleUpdate} />;
     }
+
     return (
         <div className="container">
             <BrowserRouter>
                 <header>
                     <Navbar />
                 </header>
-                <Routes>
-                    {/* <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />*/}
-                    <Route path="/addnewmovie" element={<AddNewMovie />} />
-                    {/*<Route path="*" element={<Error />} />*/}
-                </Routes>
-                <main>
+
+                <main className="main">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/About" element={<About />} />
+                        <Route path="/Contact" element={<Contact />} />
+                        <Route path="*" element={<Error />} />
+                    </Routes>
                     <Search onSearch={handleSearch} />
                     {error ? <p>{error}</p> : contentElement}
                     {isUpdate ? <UpdateMovie movie={movie} setIsUpdate={setIsUpdate} updateMovie={updateMovie} /> : <AddNewMovie onNewMovie={handleNewMovie} />}
                 </main>
-                <footer>Footer</footer>
+                <Footer />
             </BrowserRouter>
         </div>
     );
