@@ -2,44 +2,45 @@ import React, { useState } from 'react';
 import Button from './Button';
 
 function UpdateMovie(props) {
-    const { Title, Type, Year } = props.movie;
+    const { imdbID, Title, Type, Year, Poster } = props.movie;
+    const { setIsUpdate, updateMovie } = props;
     const [movie, setMovie] = useState({
-        Title: '',
-        Type: '',
-        Year: ''
+        imdbID: imdbID,
+        Title: Title,
+        Type: Type,
+        Year: Year,
+        Poster: Poster
     });
-    const handleUpdate = (e) => {
-        //e.preventDefault();
+    const submitUpdate = (e) => {
+        e.preventDefault();
         //update it
-        //props.updateMovie(movie)
-        console.log(movie);
+        updateMovie(movie);
         setMovie({
             Title: '',
             Type: '',
             Year: ''
         });
+        setIsUpdate(false);
     };
-
     const handleFormFiled = (e) => {
-        console.log(`${e.target.name} = ${e.target.value}`);
+        setMovie({ ...movie, [e.target.name]: e.target.value });
     };
-
     return (
         <div>
-            <form onSubmit={handleUpdate} className="search__form">
+            <form onSubmit={submitUpdate} className="search__form">
                 <label htmlFor="Title">Movie/Show Name:</label>
-                <input type="text" placeholder="enter movie/show title" name="Title" value={Title} onChange={handleFormFiled} required className="form__input"></input>
+                <input type="text" placeholder="enter movie/show title" name="Title" value={movie.Title} onChange={handleFormFiled} required className="form__input"></input>
                 <br></br>
                 <label htmlFor="movieType">Movie Type:</label>
-                <select name="Type" value={Type} onChange={handleFormFiled} className="form__input" id="movieType">
-                    <option value="">--Please choose an option--</option>
+                <select name="Type" value={movie.Type} onChange={handleFormFiled} className="form__input" id="movieType">
+                    <option value="">{movie.Type ? movie.Type : '--Please choose an option--'}</option>
                     <option value={'Horrow'}>Horrow</option>
                     <option value={'Thriller'}>Thriller</option>
                     <option value={'Documentry'}>Documentry</option>
                 </select>
                 <br></br>
                 <label htmlFor="Year">Release Year:</label>
-                <input type="text" placeholder="enter movie/show date of release" name="Year" value={Year} onChange={handleFormFiled} required className="form__input"></input>
+                <input type="text" placeholder="enter movie/show date of release" name="Year" value={movie.Year} onChange={handleFormFiled} required className="form__input"></input>
                 <br></br>
                 <Button type="submit" className="btn">
                     Update Movie
@@ -48,5 +49,4 @@ function UpdateMovie(props) {
         </div>
     );
 }
-
 export default UpdateMovie;

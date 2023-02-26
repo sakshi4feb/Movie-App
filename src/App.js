@@ -7,6 +7,13 @@ import Movies from './Components/Movies';
 import AddNewMovie from './Components/AddNewMovie';
 import UpdateMovie from './Components/UpdateMovie';
 
+import { BrowserRouter } from 'react-router-dom';
+/*import Home from './Pages/Home';
+import About from './Pages/About';
+import Contact from './Pages/Contact';
+import Error from './Pages/Error';*/
+import Navbar from './pages/Navbar';
+
 // eslint-disable-next-line no-unused-vars
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 
@@ -50,9 +57,19 @@ const App = () => {
     };
 
     const handleUpdate = (movie) => {
-        console.log(movie);
         setIsUpdate(true);
         setMovie(movie);
+    };
+    const updateMovie = (changedMovie) => {
+        const updatedMovies = movies.map((m) => {
+            if (changedMovie.imdbID === m.imdbID) {
+                m['Title'] = changedMovie.Title;
+                m['Type'] = changedMovie.Type;
+                m['Year'] = changedMovie.Year;
+            }
+            return m;
+        });
+        setMovies(updatedMovies);
     };
 
     let contentElement = '';
@@ -60,12 +77,26 @@ const App = () => {
         contentElement = <Movies movies={movies} handleDelete={handleDelete} handleUpdate={handleUpdate} />;
     }
     return (
-        <div>
-            <h2>Movies Portal</h2>
-            {isLoading && <p>Loading...</p>}
-            <Search onSearch={handleSearch} />
-            {error ? <p>{error}</p> : contentElement}
-            {isUpdate ? <UpdateMovie movie={movie} handleUpdate={handleUpdate} /> : <AddNewMovie onNewMovie={handleNewMovie} />}
+        <div className="container">
+            <BrowserRouter>
+                <header>
+                    <Navbar />
+                </header>
+                {/*<Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                     <Route path="*" element={<Error />} />
+                     </Routes>*/}
+                <main>
+                    {isLoading && <p>Loading...</p>}
+                    <Search onSearch={handleSearch} />
+                    {error ? <p>{error}</p> : contentElement}
+                    {isUpdate ? <UpdateMovie movie={movie} setIsUpdate={setIsUpdate} updateMovie={updateMovie} /> : <AddNewMovie onNewMovie={handleNewMovie} />}
+                </main>
+
+                <footer>Footer</footer>
+            </BrowserRouter>
         </div>
     );
 };
