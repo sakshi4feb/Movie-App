@@ -9,11 +9,11 @@ import AddNewMovie from './Components/AddNewMovie';
 import UpdateMovie from './Components/UpdateMovie';
 import Footer from './Components/Footer';
 
-import Home from './Pages/Home';
-import About from './Pages/About';
-import Contact from './Pages/Contact';
-import Error from './Pages/Error';
-import Navbar from './Pages/Navbar';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Error from './pages/Error';
+import Navbar from './pages/Navbar';
 
 const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 const App = () => {
