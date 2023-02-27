@@ -7,11 +7,23 @@ const AddNewMovie = (props) => {
     const [newMovie, setNewMovie] = useState({
         Title: '',
         Type: '',
-        Year: ''
+        Year: '',
+        Poster: ''
     });
 
     const { Title, Type, Year } = newMovie;
+
     const handleChange = (e) => {
+        if (e.target.name === 'Poster') {
+            setNewMovie((prevState) => {
+                return {
+                    ...prevState,
+                    [e.target.name]: URL.createObjectURL(e.target.files[0])
+                };
+            });
+            return;
+        }
+
         setNewMovie((prevState) => {
             return { ...prevState, [e.target.name]: e.target.value };
         });
@@ -22,13 +34,15 @@ const AddNewMovie = (props) => {
         setNewMovie({
             Title: '',
             Type: '',
-            Year: ''
+            Year: '',
+            Poster: ''
         });
     };
     return (
         <div className="form" id="form">
             <div className="child__form">
                 <form onSubmit={handleSubmit} className="search__form">
+                    <input type="file" id="image" name="Poster" accept="image/png, image/jpg" onChange={handleChange} />
                     <label htmlFor="Title">Movie/Show Name:</label>
                     <input type="text" placeholder="enter movie/show title" name="Title" value={Title} onChange={handleChange} required className="form__input"></input>
                     <br></br>
