@@ -9,12 +9,11 @@ import AddNewMovie from './Components/AddNewMovie';
 import UpdateMovie from './Components/UpdateMovie';
 import Footer from './Components/Footer';
 
-import Home from './Pages/Home';
-import About from './Pages/About';
-import Contact from './Pages/Contact';
-import Error from './Pages/Error';
-import Navbar from './Pages/Navbar';
-import { async } from 'q';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Error from './pages/Error';
+import Navbar from './pages/Navbar';
 
 const API_URL = 'https://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 const App = () => {
@@ -41,14 +40,12 @@ const App = () => {
         searchMovies('Jurassic Park');
     }, []);
 
-    console.log(movieSearch);
     localStorage.setItem('MY_KEY', movieSearch ? JSON.stringify(movieSearch) : '');
 
     const handleSearch = (value) => {
         const data = localStorage.getItem('MY_KEY');
         const newData = data ? JSON.parse(data) : [];
         const result = newData.filter((movie) => movie.Title.includes(value));
-        console.log(result);
         if (result.length > 0) {
             setMovieSearch(result);
         } else {
@@ -105,7 +102,7 @@ const App = () => {
                     </Routes>
                     <Search onSearch={handleSearch} />
                     {error ? <p>{error}</p> : contentElement}
-                    {isUpdate ? <UpdateMovie movie={movie} setIsUpdate={setIsUpdate} updateMovie={updateMovie} /> : <AddNewMovie onNewMovie={handleNewMovie} />}
+                    {isUpdate ? <UpdateMovie movie={movie} setMovie={setMovie} setIsUpdate={setIsUpdate} updateMovie={updateMovie} /> : <AddNewMovie onNewMovie={handleNewMovie} />}
                 </main>
                 <Footer />
             </BrowserRouter>
