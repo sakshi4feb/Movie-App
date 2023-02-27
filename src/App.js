@@ -16,7 +16,7 @@ import Error from './Pages/Error';
 import Navbar from './Pages/Navbar';
 import { async } from 'q';
 
-const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=73041739';
+const API_URL = 'https://www.omdbapi.com/?i=tt3896198&apikey=73041739';
 const App = () => {
     const [movies, setMovies] = useState([]);
     const [movieSearch, setMovieSearch] = useState([]);
