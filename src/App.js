@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 /* eslint-disable max-lines */
+=======
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/no-distracting-elements */
+>>>>>>> fe460bf52f742cda9b06e404148d31e7067097bc
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
@@ -6,8 +12,17 @@ import { v4 as uuidv4 } from 'uuid';
 import Search from './Components/Search';
 import Movies from './Components/Movies';
 import AddNewMovie from './Components/AddNewMovie';
+<<<<<<< HEAD
 import UpdateMovie from './Components/UpdateMovie';
 import Footer from './Components/Footer';
+=======
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import Home from './Pages/Home';
+import About from './Pages/About';
+import Error from './Pages/Error';
+import Navbar from './Pages/Navbar';
+import Addmovie from './Pages/Navbar';
+>>>>>>> fe460bf52f742cda9b06e404148d31e7067097bc
 
 import Home from './Pages/Home';
 import About from './Pages/About';
@@ -88,11 +103,16 @@ const App = () => {
     }
 
     return (
+<<<<<<< HEAD
         <div className="container">
+=======
+        <div>
+>>>>>>> fe460bf52f742cda9b06e404148d31e7067097bc
             <BrowserRouter>
                 <header>
                     <Navbar />
                 </header>
+<<<<<<< HEAD
 
                 <main className="main">
                     <Routes>
@@ -106,6 +126,22 @@ const App = () => {
                     {isUpdate ? <UpdateMovie movie={movie} setMovie={setMovie} setIsUpdate={setIsUpdate} updateMovie={updateMovie} /> : <AddNewMovie onNewMovie={handleNewMovie} />}
                 </main>
                 <Footer />
+=======
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/addnewmovie" element={<AddNewMovie />} />
+                    <Route path="*" element={<Error />} />
+                </Routes>
+
+                <main>
+                    <Search onSearch={handleSearch} />
+                    <Movies movies={movies} handleDelete={handleDelete} />
+                    <AddNewMovie onNewMovie={handleNewMovie} />
+                </main>
+
+                <footer>Footer</footer>
+>>>>>>> fe460bf52f742cda9b06e404148d31e7067097bc
             </BrowserRouter>
         </div>
     );

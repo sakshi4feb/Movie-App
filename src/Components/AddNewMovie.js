@@ -39,6 +39,7 @@ const AddNewMovie = (props) => {
         });
     };
     return (
+<<<<<<< HEAD
         <div className="form" id="form">
             <div className="child__form">
                 <form onSubmit={handleSubmit} className="search__form">
@@ -65,6 +66,18 @@ const AddNewMovie = (props) => {
                 </form>
             </div>
         </div>
+=======
+        <section id="add-movie">
+            <form onSubmit={handleSubmit} className="search__form">
+                <input type="text" placeholder="enter movie/show title" name="Title" value={Title} onChange={handleChange} required className="form__input"></input>
+                <input type="text" placeholder="enter movie/show type" name="Type" value={Type} onChange={handleChange} required className="form__input"></input>
+                <input type="text" placeholder="enter movie/show date of release" name="Year" value={Year} onChange={handleChange} required className="form__input"></input>
+                <Button type="submit" className="btn">
+                    Add New Movie
+                </Button>
+            </form>
+        </section>
+>>>>>>> fe460bf52f742cda9b06e404148d31e7067097bc
     );
 };
 

@@ -15,7 +15,11 @@
         "no-empty": "error",
         "default-case": "error",
         "eqeqeq": "error",
+<<<<<<< HEAD
         /*"max-lines": ["error", 50],*/
+=======
+        //"max-lines": ["error", 50],
+>>>>>>> fe460bf52f742cda9b06e404148d31e7067097bc
         "max-depth": ["error", 3]
     }
 }
